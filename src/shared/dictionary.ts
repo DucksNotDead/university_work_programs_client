@@ -6,6 +6,7 @@ export const appDictionary = {
   name: 'Название',
   title: 'Название',
   label: 'Название',
+  description: 'Описание',
   fio: 'ФИО',
   role: 'Роль',
   type: 'Вид учебной работы',
@@ -29,6 +30,5 @@ export const appDictionary = {
   semester: 'Семестр',
   hours: 'Часы',
   total_hours: 'Всего часов',
-  confirmed: 'Подтверждена'
-
+  confirmed: 'Подтверждена',
 } as const;
