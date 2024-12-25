@@ -44,19 +44,19 @@ export function useRights(needRole: TRoleLike | undefined | null) {
 }
 
 export function renderActions({
+  id,
   canChange,
   canApprove,
   actions,
   onDelete,
   onEdit,
-  onPrint,
   onApprove,
 }: {
+  id: number,
   canChange: boolean;
   canApprove: boolean;
   actions: TTableActions;
   onEdit: () => void;
-  onPrint: () => void;
   onDelete: () => void;
   onApprove: () => void;
 }) {
@@ -78,9 +78,9 @@ export function renderActions({
         </Button>
       )}
       {actions.includes('print') && (
-        <Button type={'text'} onClick={onPrint}>
+        <a href={`${process.env.REACT_APP_API_BASE_URL}/programs/reports/${id}`} download={'report.xlsx'}>
           <Printer />
-        </Button>
+        </a>
       )}
     </Space>
   );

@@ -15,14 +15,12 @@ interface IProps<DataType extends IIdentifiable> extends ITableProps<DataType> {
   loading: boolean;
   onDelete: (id: number) => void;
   onApprove: (id: number) => void;
-  onPrint: (id: number) => void;
   role: ERole | null;
 }
 
 export function RegistryTable<DataType extends IIdentifiable>({
   onDelete,
   onApprove,
-  onPrint,
   expandable,
   columns,
   actions,
@@ -62,16 +60,16 @@ export function RegistryTable<DataType extends IIdentifiable>({
                     !(record as any).approved &&
                     (record as any).department_head_id === user?.id,
                   onApprove: () => onApprove(id),
-                  onPrint: () => onPrint(id),
                   onEdit: () => handleEdit(id),
                   onDelete: () => onDelete(id),
+                  id,
                 });
               },
             },
           ] as ColumnsType<DataType>)
         : []),
     ];
-  }, [columns, actions, setSearchParams, canChange, user?.id, onApprove, onPrint, handleEdit, onDelete]);
+  }, [columns, actions, setSearchParams, canChange, user?.id, onApprove, handleEdit, onDelete]);
 
   return (
     <Table<DataType>

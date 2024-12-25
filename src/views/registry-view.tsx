@@ -39,15 +39,6 @@ export function RegistryView<DataType extends IIdentifiable>(
     onError: () => message.error(appMessages.crud.update.fail),
   });
 
-  const { mutate: reportMutation } = useMutation({
-    mutationKey: ['get report program'],
-    mutationFn: (id: number) =>
-      $api.get<IResponse<IProgramReportInfo>>(`/programs/reports/${id}`, {responseType: 'blob'}),
-    onSuccess: ({ data }) => {
-      console.log(data);
-    },
-  });
-
   const handleApprove = useCallback(
     (id: number) => {
       const item = data.find((el) => el.id === id);
@@ -56,13 +47,6 @@ export function RegistryView<DataType extends IIdentifiable>(
       }
     },
     [data, pathname, approveMutation],
-  );
-
-  const handlePrint = useCallback(
-    (id: number) => {
-      reportMutation(id);
-    },
-    [reportMutation],
   );
 
   const handleDelete = useCallback(
@@ -93,7 +77,6 @@ export function RegistryView<DataType extends IIdentifiable>(
           loading={isPending}
           onDelete={handleDelete}
           onApprove={handleApprove}
-          onPrint={handlePrint}
           role={role}
         />
         <RegistryItemModal
