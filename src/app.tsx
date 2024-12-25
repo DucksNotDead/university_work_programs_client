@@ -15,21 +15,23 @@ export function App() {
   const [isAuth, setIsAuth] = useState(false);
 
   return (
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        <MessageContextProvider>
-          <AuthContextProvider onStatusChange={setIsAuth}>
-            <ConfigProvider locale={ruRU}>
-              <Layout>
-                <SidebarMenu />
-                <Layout style={{ padding: 12 }}>
-                  <AppRouter />
+    <ConfigProvider theme={{ token: { colorPrimary: '#3EB489', colorLink: '#3EB489' } }}>
+      <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+          <MessageContextProvider>
+            <AuthContextProvider onStatusChange={setIsAuth}>
+              <ConfigProvider locale={ruRU}>
+                <Layout>
+                  <SidebarMenu />
+                  <Layout style={{ padding: 12 }}>
+                    <AppRouter />
+                  </Layout>
                 </Layout>
-              </Layout>
-            </ConfigProvider>
-          </AuthContextProvider>
-        </MessageContextProvider>
-      </QueryClientProvider>
-    </BrowserRouter>
+              </ConfigProvider>
+            </AuthContextProvider>
+          </MessageContextProvider>
+        </QueryClientProvider>
+      </BrowserRouter>
+    </ConfigProvider>
   );
 }

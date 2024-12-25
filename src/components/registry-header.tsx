@@ -47,8 +47,8 @@ export function RegistryHeader({ title, role }: IProps) {
       <div className="col left">
         <h1>{title}</h1>
         {canCreate && (
-          <Button shape={'circle'} type={'primary'} onClick={handleCreate}>
-            <Plus size={30} color={'white'} />
+          <Button type={'primary'} onClick={handleCreate}>
+            Добавить
           </Button>
         )}
       </div>
