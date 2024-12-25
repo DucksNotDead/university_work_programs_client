@@ -1,7 +1,6 @@
 import { IOption, IViewConfig } from '../../shared/types';
 import { IDisciplineInStudyPlan } from './types';
 import { disciplineInStudyPlanApi } from './api';
-import { renderLink } from '../../shared/utils';
 import { EStudyType, ruStudyTypes } from '../../shared/studyTypes';
 import { disciplineApi } from '../discipline/api';
 import { studyPlanApi } from '../study-plan/api';
@@ -13,16 +12,10 @@ export const disciplineInStudyPlanConfig: IViewConfig<IDisciplineInStudyPlan> = 
   entityTitle: { key: 'id', prefix: 'Дисциплины' },
   getFn: disciplineInStudyPlanApi.get,
   table: {
-    columns: (setParams) => [
-      { key: 'id', render: (value) => renderLink(value, setParams) },
-      {
-        key: 'discipline_id',
-        render: (value) => renderLink(value, setParams, 'disciplines'),
-      },
-      {
-        key: 'study_plan_id',
-        render: (value) => renderLink(value, setParams, 'studyPlans'),
-      },
+    columns: [
+      { key: 'id' },
+      { key: 'discipline_id' },
+      { key: 'study_plan_id' },
       { key: 'semester' },
       { key: 'type', render: (value) => ruStudyTypes[value as EStudyType] },
       { key: 'hours' },
@@ -34,9 +27,7 @@ export const disciplineInStudyPlanConfig: IViewConfig<IDisciplineInStudyPlan> = 
     { name: 'study_plan_id', getFn: studyPlanApi.getDictionaries },
     {
       name: 'semester',
-      rules: [
-        { type: 'number', message: appMessages.validation.isNumber },
-      ],
+      rules: [{ type: 'number', message: appMessages.validation.isNumber }],
     },
     {
       name: 'type',
@@ -54,9 +45,7 @@ export const disciplineInStudyPlanConfig: IViewConfig<IDisciplineInStudyPlan> = 
     },
     {
       name: 'hours',
-      rules: [
-        { type: 'number', message: appMessages.validation.isNumber },
-      ],
+      rules: [{ type: 'number', message: appMessages.validation.isNumber }],
     },
   ],
 };

@@ -43,7 +43,7 @@ export function RegistryTable<DataType extends IIdentifiable>({
 
   const columnsMapped = useMemo<ColumnsType<DataType>>(() => {
     return [
-      ...columns((params) => setSearchParams(() => params)).map((column) => ({
+      ...columns.map((column) => ({
         dataIndex: column.key as string,
         title: appDictionary[column.key as keyof typeof appDictionary] ?? column.key,
         render: column.render,

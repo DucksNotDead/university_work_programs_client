@@ -1,7 +1,6 @@
 import { IViewConfig } from '../../shared/types';
 import { IDiscipline } from './types';
 import { disciplineApi } from './api';
-import { renderLink } from '../../shared/utils';
 import { departmentApi } from '../department/api';
 
 export const disciplineConfig: IViewConfig<IDiscipline> = {
@@ -10,14 +9,7 @@ export const disciplineConfig: IViewConfig<IDiscipline> = {
   entityTitle: { key: 'name', prefix: 'Дисциплины' },
   getFn: disciplineApi.get,
   table: {
-    columns: (setParams) => [
-      { key: 'id', render: (value) => renderLink(value, setParams) },
-      {
-        key: 'department_id',
-        render: (value) => renderLink(value, setParams, 'departments'),
-      },
-      { key: 'name' },
-    ],
+    columns: [{ key: 'id' }, { key: 'department_id' }, { key: 'name' }],
     actions: ['edit', 'delete'],
   },
   formFields: [

@@ -87,10 +87,7 @@ export function RegistryItemModal<T extends IIdentifiable>({
   const { mutate: createUpdateMutation, isPending: createUpdatePending } = useMutation({
     mutationKey: [formMode, 'createUpdateItem'],
     mutationFn: (data: T) =>
-      $api[formMode === 'update' ? 'put' : 'post'](
-        `${pathname}${formMode === 'update' ? '' : '/create'}`,
-        data,
-      ),
+      $api[formMode === 'update' ? 'put' : 'post'](`${pathname}`, data),
     onSuccess: () => {
       message.success(
         appMessages.crud[formMode === 'update' ? 'update' : 'create'].success,

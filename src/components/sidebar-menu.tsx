@@ -8,12 +8,14 @@ const items: ItemType<MenuItemType>[] = [
   { key: '/departments', label: 'Кафедры' },
   { key: '/disciplines', label: 'Дисциплины' },
   { key: '/faculties', label: 'Факультеты' },
-  { key: '/specialities', label: 'Специальности' },
+  { key: '/specialties', label: 'Специальности' },
   { key: '/academic-loads', label: 'Нагрузки' },
   { key: '/standards', label: 'Стандарты' },
   { key: '/study-plans', label: 'Учебные планы' },
   { key: '/disciplines-in-study-plans', label: 'Дисциплины в учебном плане' },
-  { key: '/syllabuses', label: 'Учебные программы' },
+  { key: '/programs', label: 'Рабочие программы' },
+  { key: '/program-sections', label: 'Разделы рабочих программ' },
+  { key: '/program-subsections', label: 'Подразделы рабочих программ' },
   { key: '/users', label: 'Пользователи' },
 ];
 
@@ -23,19 +25,14 @@ export function SidebarMenu() {
   const { user } = useAuth();
 
   return (
-    <Space direction={'vertical'} style={{ padding: 24 }}>
-      <h3 style={{ color: '#fff' }}>Образовательный ресурс</h3>
-
-      <div style={{ color: '#fff' }}>Роль: {ruRole[user?.role ?? ERole.User]}</div>
-
-      <Menu
-        mode={'vertical'}
-        items={items}
-        onClick={({ key }) => navigate(key)}
-        selectedKeys={items
-          .filter((item) => pathname === item?.key)
-          .map((i) => (i?.key as string) ?? '')}
-      />
-    </Space>
+    <Menu
+      style={{ display: user? 'flex' : 'none' }}
+      mode={'horizontal'}
+      items={items}
+      onClick={({ key }) => navigate(key)}
+      selectedKeys={items
+        .filter((item) => pathname === item?.key)
+        .map((i) => (i?.key as string) ?? '')}
+    />
   );
 }

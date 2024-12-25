@@ -4,10 +4,13 @@ export const appDictionary = {
 
   id: 'ID',
   name: 'Название',
+  title: 'Название',
+  label: 'Название',
   fio: 'ФИО',
   role: 'Роль',
   type: 'Вид учебной работы',
 
+  section_id: 'Раздел',
   department_id: 'Кафедра',
   discipline_name: 'Название дисциплины',
   discipline_id: 'Дисциплина',
@@ -17,12 +20,9 @@ export const appDictionary = {
   faculty_id: 'Факультет',
   head_id: 'Зав. кафедры',
 
-  aims: 'Цели и задачи дисциплины',
-  competencies: 'Компетенции',
-  requirements: 'Требования к уровню освоения содержания дисциплины',
-  position_in_scheme: 'Место дисциплины в структурно-логической схеме ',
-  themes: 'Разделы дисциплины',
-  contents: 'Содержание разделов дисциплины',
+  questions: 'Контрольные вопросы',
+  skills: 'Умения, навыки',
+  literature: 'Список литературы',
   direction: 'Направление',
   volume: 'Объём',
   year: 'Год',
@@ -30,4 +30,5 @@ export const appDictionary = {
   hours: 'Часы',
   total_hours: 'Всего часов',
   confirmed: 'Подтверждена'
+
 } as const;

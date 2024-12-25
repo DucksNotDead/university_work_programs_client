@@ -17,7 +17,7 @@ export const authApi = {
     return await $api.post<IResponse<IUser>>(urls.base);
   },
   async login(credits: TUserCredits) {
-    return await $api.post<IResponse<{ user: IUser; token: string }>>(
+    return await $api.post<IResponse<IUser>>(
       urls.login(),
       credits,
     );

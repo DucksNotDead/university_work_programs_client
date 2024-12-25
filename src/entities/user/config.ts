@@ -1,7 +1,6 @@
 import { IOption, IViewConfig } from '../../shared/types';
 import { IUser } from './types';
 import { userApi } from './api';
-import { renderLink } from '../../shared/utils';
 import { createRoles, ERole, ruRole } from '../../shared/roles';
 import { stringRules } from '../../shared/common';
 
@@ -11,8 +10,8 @@ export const userConfig: IViewConfig<IUser> = {
   entityTitle: { key: 'id', prefix: 'Пользователь' },
   getFn: userApi.get,
   table: {
-    columns: (setParams) => [
-      { key: 'id', render: (value) => renderLink(value, setParams) },
+    columns: [
+      { key: 'id' },
       { key: 'fio' },
       { key: 'role', render: (value) => ruRole[value as ERole] },
     ],

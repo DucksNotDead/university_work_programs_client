@@ -66,7 +66,7 @@ export type TSetParamsFn = (params: Record<string, any>) => void;
 export type TFormMode = 'create' | 'update' | 'view';
 
 export interface ITableProps<DataType extends IIdentifiable> {
-  columns: (setParams: TSetParamsFn) => IColumn<DataType>[];
+  columns: IColumn<DataType>[];
   actions?: TTableActions;
   expandable?: {
     props: (keyof Omit<DataType, 'id'>)[];

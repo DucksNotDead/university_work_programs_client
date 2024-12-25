@@ -21,9 +21,7 @@ export function App() {
           <AuthContextProvider onStatusChange={setIsAuth}>
             <ConfigProvider locale={ruRU}>
               <Layout>
-                <Layout.Sider width={isAuth ? 300 : 0}>
-                  <SidebarMenu />
-                </Layout.Sider>
+                <SidebarMenu />
                 <Layout style={{ padding: 12 }}>
                   <AppRouter />
                 </Layout>

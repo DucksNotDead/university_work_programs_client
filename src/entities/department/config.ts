@@ -1,7 +1,6 @@
 import { IViewConfig } from '../../shared/types';
 import { IDepartment } from './types';
 import { departmentApi } from './api';
-import { renderLink } from '../../shared/utils';
 import { facultyApi } from '../faculty/api';
 import { userApi } from '../user/api';
 
@@ -11,11 +10,11 @@ export const departmentConfig: IViewConfig<IDepartment> = {
   entityTitle: { key: 'name', prefix: 'Кафедры' },
   getFn: departmentApi.get,
   table: {
-    columns: (setParams) => [
-      { key: 'id', render: (value) => renderLink(value, setParams) },
+    columns: [
+      { key: 'id' },
       { key: 'name' },
-      { key: 'faculty_id', render: (value) => renderLink(value, setParams, 'faculties') },
-      { key: 'head_id', render: (value) => renderLink(value, setParams, 'users') },
+      { key: 'faculty_id' },
+      { key: 'head_id' },
     ],
     actions: ['edit', 'delete'],
   },

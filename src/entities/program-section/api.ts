@@ -1,32 +1,32 @@
 import { $api } from '../../shared/api';
-import { ISpecialty } from './types';
 import { IResponse, TGetDictionaryQuery, TGetQuery } from '../../shared/types';
+import { IProgramSection } from './types';
 
 const urls = {
-  base: '/specialties',
+  base: '/program-sections',
 };
 
 const keys = {
-  get: 'get specialties',
+  get: 'get program sections',
 };
 
 async function get() {
-  return $api.get<IResponse<ISpecialty[]>>(urls.base);
+  return $api.get<IResponse<IProgramSection[]>>(urls.base);
 }
 
 async function getDict() {
   try {
     const res = await get();
-    return res.data.data.map((specialty) => ({
-      label: specialty.name,
-      value: specialty.id,
+    return res.data.data.map((section) => ({
+      label: section.title,
+      value: section.id,
     }));
   } catch {
     return [];
   }
 }
 
-export const specialtyApi = {
-  get: [keys.get, get] as TGetQuery<ISpecialty>,
+export const programSectionsApi = {
+  get: [keys.get, get] as TGetQuery<IProgramSection>,
   getDictionaries: [keys.get, getDict] as TGetDictionaryQuery,
 };

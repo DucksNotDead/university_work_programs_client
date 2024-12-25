@@ -15,7 +15,7 @@ interface IProps {
   onStatusChange: (isAuth: boolean) => void;
 }
 
-const nonProtectedRoutes = [appRoutes.home, appRoutes.syllabuses];
+const nonProtectedRoutes = [appRoutes.home, appRoutes.programs];
 
 export function AuthContextProvider({ children, onStatusChange }: IProps) {
   const [user, setUser] = useState<IAuthContextValue['user']>(null);
@@ -40,7 +40,7 @@ export function AuthContextProvider({ children, onStatusChange }: IProps) {
     mutationFn: authApi.login,
     mutationKey: ['login'],
     onSuccess: ({ data }) => {
-      setUser(data.data.user);
+      setUser(data.data);
       message.success(appMessages.auth.login.success);
     },
     onError: () => {

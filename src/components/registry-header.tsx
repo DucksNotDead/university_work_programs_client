@@ -54,7 +54,7 @@ export function RegistryHeader({ title, role }: IProps) {
       </div>
 
       <div className="col right">
-        <Button type={'link'} icon={<User2 size={18} />} onClick={handleLoginButtonClick}>
+        <Button onClick={handleLoginButtonClick}>
           {user ? 'Выйти' : 'Войти'}
         </Button>
       </div>

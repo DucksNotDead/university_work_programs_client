@@ -1,20 +1,19 @@
 import { IViewConfig } from '../../shared/types';
-import { ISpeciality } from './types';
-import { specialityApi } from './api';
-import { renderLink } from '../../shared/utils';
+import { ISpecialty } from './types';
+import { specialtyApi } from './api';
 import { stringRules } from '../../shared/common';
 import { facultyApi } from '../faculty/api';
 
-export const specialityConfig: IViewConfig<ISpeciality> = {
+export const specialityConfig: IViewConfig<ISpecialty> = {
   header: { title: 'Специальности' },
   serviceEntityName: 'специальность',
   entityTitle: { key: 'name', prefix: 'Специальности' },
-  getFn: specialityApi.get,
+  getFn: specialtyApi.get,
   table: {
-    columns: (setParams) => [
-      { key: 'id', render: (value) => renderLink(value, setParams) },
+    columns: [
+      { key: 'id' },
       { key: 'name' },
-      { key: 'faculty_id', render: (value) => renderLink(value, setParams, 'faculties') },
+      { key: 'faculty_id' },
       { key: 'direction' },
     ],
     actions: ['delete', 'edit'],

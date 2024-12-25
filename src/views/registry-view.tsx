@@ -11,8 +11,7 @@ import { $api } from '../shared/api';
 import { useLocation } from 'react-router';
 import { useMessage } from '../entities/message/lib';
 import { appMessages } from '../shared/messages';
-import { ISyllabusReportInfo } from '../entities/syllabus/types';
-import { SyllabusReportView } from './syllabus-report-view';
+import { IProgramReportInfo } from '../entities/program/types';
 
 export function RegistryView<DataType extends IIdentifiable>(
   props: IViewConfig<DataType>,
@@ -23,7 +22,6 @@ export function RegistryView<DataType extends IIdentifiable>(
   const [data, setData] = useState<DataType[]>([]);
   const [role, setRole] = useState<ERole | null>(null);
   const [itemToDelete, setItemToDelete] = useState<DataType | null>(null);
-  const [itemToPrint, setItemToPrint] = useState<ISyllabusReportInfo | null>(null);
 
   const { data: response, isPending } = useQuery({
     queryKey: [props.getFn[0]],
@@ -42,11 +40,11 @@ export function RegistryView<DataType extends IIdentifiable>(
   });
 
   const { mutate: reportMutation } = useMutation({
-    mutationKey: ['get report syllabus'],
+    mutationKey: ['get report program'],
     mutationFn: (id: number) =>
-      $api.get<IResponse<ISyllabusReportInfo>>(`/syllabuses/reports/${id}`),
+      $api.get<IResponse<IProgramReportInfo>>(`/programs/reports/${id}`, {responseType: 'blob'}),
     onSuccess: ({ data }) => {
-      setItemToPrint(() => data.data);
+      console.log(data);
     },
   });
 
@@ -113,11 +111,6 @@ export function RegistryView<DataType extends IIdentifiable>(
           getKey={props.getFn[0]}
         />
       </Space>
-      <SyllabusReportView
-        item={itemToPrint}
-        className={'app-registry-view'}
-        onExport={() => setItemToPrint(() => null)}
-      />
     </div>
   );
 }

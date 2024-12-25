@@ -43,34 +43,6 @@ export function useRights(needRole: TRoleLike | undefined | null) {
   return result;
 }
 
-export function renderLink(
-  id: any,
-  setParams: TSetParamsFn,
-  registry?: keyof typeof appRoutes,
-  name?: string,
-) {
-  return id ? (
-    <Button
-      type={'link'}
-      onClick={() =>
-        setParams(registry ? { id, from: registry.replace('/', '') } : { id })
-      }
-    >
-      {name ?? id}
-    </Button>
-  ) : (
-    <Typography.Text type={'secondary'}>NULL</Typography.Text>
-  );
-}
-
-export function renderYear(value: any) {
-  return (
-    <Typography.Text type={'secondary'}>
-      {value} - {value + 1}
-    </Typography.Text>
-  );
-}
-
 export function renderActions({
   canChange,
   canApprove,

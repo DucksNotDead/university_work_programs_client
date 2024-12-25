@@ -1,8 +1,7 @@
 import { IViewConfig } from '../../shared/types';
 import { IStudyPlan } from './types';
 import { studyPlanApi } from './api';
-import { renderLink } from '../../shared/utils';
-import { specialityApi } from '../speciality/api';
+import { specialtyApi } from '../speciality/api';
 import { appMessages } from '../../shared/messages';
 
 export const studyPlanConfig: IViewConfig<IStudyPlan> = {
@@ -11,14 +10,7 @@ export const studyPlanConfig: IViewConfig<IStudyPlan> = {
   entityTitle: { key: 'id', prefix: 'Учебные планы' },
   getFn: studyPlanApi.get,
   table: {
-    columns: (setParams) => [
-      { key: 'id', render: (value) => renderLink(value, setParams) },
-      { key: 'year' },
-      {
-        key: 'speciality_id',
-        render: (value) => renderLink(value, setParams, 'specialities'),
-      },
-    ],
+    columns: [{ key: 'id' }, { key: 'year' }, { key: 'speciality_id' }],
     actions: ['delete', 'edit'],
     expandable: {
       cond: () => true,
@@ -26,12 +18,10 @@ export const studyPlanConfig: IViewConfig<IStudyPlan> = {
     },
   },
   formFields: [
-    { name: 'speciality_id', getFn: specialityApi.getDictionaries },
+    { name: 'speciality_id', getFn: specialtyApi.getDictionaries },
     {
       name: 'year',
-      rules: [
-        { type: 'number', message: appMessages.validation.isNumber },
-      ],
+      rules: [{ type: 'number', message: appMessages.validation.isNumber }],
     },
     { name: 'description', isTextarea: true },
   ],
